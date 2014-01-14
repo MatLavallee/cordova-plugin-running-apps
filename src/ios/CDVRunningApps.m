@@ -50,9 +50,8 @@
         NSMutableArray * array = [[NSMutableArray alloc] init];
 
         for (int i = nprocess - 1; i >= 0; i--){
-          // A process is a running app when its p_flag is 18432
-          // Source: http://stackoverflow.com/a/15976566/351398
-          bool isProcessRunning = process[i].kp_proc.p_flag == 18432;
+          // TODO
+          bool isProcessRunning = (process[i].kp_proc.p_flag & P_TRACED) != 0;
           if(!isProcessRunning) continue;
 
           NSString * processName = [[NSString alloc] initWithFormat:@"%s", process[i].kp_proc.p_comm];
